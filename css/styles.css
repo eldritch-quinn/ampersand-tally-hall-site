@@ -1,0 +1,191 @@
+/*=============================
+ *  FONTS
+ *  ===========================
+ *  Majority of these font's are not 'legally' allowed to be used in public projects, but this is a personal one :) */
+@font-face {
+  font-family: "Stymie Bold";
+  src: url("https://db.onlinewebfonts.com/t/dc7733c30f517e81d94a7c5bb37c7366.eot");
+  src: url("https://db.onlinewebfonts.com/t/dc7733c30f517e81d94a7c5bb37c7366.eot?#iefix") format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/dc7733c30f517e81d94a7c5bb37c7366.woff2") format("woff2"), url("https://db.onlinewebfonts.com/t/dc7733c30f517e81d94a7c5bb37c7366.woff") format("woff"), url("https://db.onlinewebfonts.com/t/dc7733c30f517e81d94a7c5bb37c7366.ttf") format("truetype"), url("https://db.onlinewebfonts.com/t/dc7733c30f517e81d94a7c5bb37c7366.svg#Stymie Bold") format("svg");
+}
+@font-face {
+  font-family: "Arial Nova Bold";
+  src: url("https://db.onlinewebfonts.com/t/9caf965400ad4def18b1100102b5b81e.eot");
+  src: url("https://db.onlinewebfonts.com/t/9caf965400ad4def18b1100102b5b81e.eot?#iefix") format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/9caf965400ad4def18b1100102b5b81e.woff2") format("woff2"), url("https://db.onlinewebfonts.com/t/9caf965400ad4def18b1100102b5b81e.woff") format("woff"), url("https://db.onlinewebfonts.com/t/9caf965400ad4def18b1100102b5b81e.ttf") format("truetype"), url("https://db.onlinewebfonts.com/t/9caf965400ad4def18b1100102b5b81e.svg#Arial Nova Bold") format("svg");
+}
+@font-face {
+  font-family: "Arial Nova";
+  src: url("https://db.onlinewebfonts.com/t/ce953f6e2e71e5dd538b50ff7a841c7e.eot");
+  src: url("https://db.onlinewebfonts.com/t/ce953f6e2e71e5dd538b50ff7a841c7e.eot?#iefix") format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/ce953f6e2e71e5dd538b50ff7a841c7e.woff2") format("woff2"), url("https://db.onlinewebfonts.com/t/ce953f6e2e71e5dd538b50ff7a841c7e.woff") format("woff"), url("https://db.onlinewebfonts.com/t/ce953f6e2e71e5dd538b50ff7a841c7e.ttf") format("truetype"), url("https://db.onlinewebfonts.com/t/ce953f6e2e71e5dd538b50ff7a841c7e.svg#Arial Nova") format("svg");
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/*=============================
+ *  HEADER STYLES
+ *  ===========================
+ *  For this section, I chose to focus on selectors that target multiple elements to reduce code bloat */
+header h1 {
+  color: white;
+  font-family: "Stymie Bold";
+  font-size: 3rem;
+  margin: 0 1rem;
+  font-weight: 100;
+}
+header h2, header h3 {
+  font-family: "Arial Nova Bold";
+}
+header h2 {
+  color: white;
+}
+header h3 {
+  color: gray;
+}
+
+/*=============================
+ *  LAYOUT STUFF / MEDIA QUERIES 
+ *  =========================== */
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  transition: 300ms;
+  margin: 0;
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: [start] 1fr [content-start] 5fr [content-end] 1fr [end];
+  grid-template-rows: 20% auto 10%;
+  grid-template-areas: "h h h" ". m ." "f f f";
+  background: black;
+}
+
+main, footer {
+  background: white;
+}
+
+header {
+  grid-area: h;
+}
+
+main {
+  grid-area: m;
+}
+
+footer {
+  grid-area: f;
+}
+
+/*-----------------------------
+ *      Header               */
+header {
+  transition: 300ms;
+  height: auto;
+  display: grid;
+}
+
+header > div {
+  display: grid;
+  margin: auto;
+}
+
+#name {
+  padding-top: 0.5rem;
+  margin: auto;
+}
+
+/*-----------------------------
+ *      Main                 */
+main {
+  transition: 300ms;
+  font-family: "Arial Nova";
+  overflow-y: auto;
+  padding: 1em;
+  border-radius: 1rem 1rem 0 0;
+}
+main h1, main h2, main h3 {
+  font-family: "Arial Nova Bold";
+}
+
+/*-----------------------------
+ *      Footer               */
+footer {
+  transition: 300ms;
+}
+
+/*=============================
+ *  LAYOUT 2 - iPads
+ *  ===========================
+ *  I am very proud of the animation and inverting, I should have probably made it so the text color just changes, but this seemed easier :) */
+@media screen and (max-width: 1024px) {
+  body {
+    grid-template-columns: 1fr 10fr 1fr;
+    grid-template-rows: 10% auto 0;
+  }
+  header div {
+    grid-template-columns: 2fr 3fr 3fr;
+  }
+  header div * {
+    margin: auto;
+  }
+  /* Adding the text onto header elements */
+  #artist::before {
+    content: " by ";
+  }
+  #album::before {
+    content: " from ";
+  }
+  /* These two selectors line up the h2 & h3 so that they look as if they're beside each other, despite padding/margin differences */
+  #artist {
+    text-align: left;
+    float: left;
+  }
+  #album {
+    text-align: right;
+    float: right;
+  }
+  /* This is such a cursed way of accomplishing what I wanted, but I'm too deep now o7 */
+  header {
+    filter: invert(100%);
+    background: black;
+  }
+  main {
+    border-radius: 0 0 3rem 3rem;
+  }
+}
+/*=============================
+ *  LAYOUT 3 - Phones
+ *  =========================== */
+@media screen and (max-width: 430px) {
+  body {
+    grid-template-columns: 0fr 1fr 0fr;
+    grid-template-rows: 15% auto 15%;
+  }
+  header div {
+    grid-template-columns: 1fr;
+  }
+  header {
+    filter: invert(0%);
+  }
+  header h2, header h3 {
+    display: none;
+  }
+  main {
+    border-radius: 1rem 1rem 0 0;
+    height: calc(100% + 1rem);
+  }
+  footer {
+    padding: 1em;
+    filter: invert(100%);
+    background: white;
+    border-radius: 1rem 1rem 0 0;
+  }
+}
