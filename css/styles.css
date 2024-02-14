@@ -19,7 +19,6 @@
 }
 * {
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
 }
 
@@ -30,7 +29,11 @@
 /*=============================
  *  HEADER STYLES
  *  ===========================
- *  For this section, I chose to focus on selectors that target multiple elements to reduce code bloat */
+ *  For this section, I chose to focus on selectors that target multiple elements to reduce code bloat
+ *  I also based the website's design on the black & white aspect of the ablum cover */
+header * {
+  margin: 0;
+}
 header h1 {
   color: white;
   font-family: "Stymie Bold";
@@ -59,10 +62,11 @@ html {
 body {
   transition: 300ms;
   margin: 0;
-  display: grid;
   height: 100%;
   width: 100%;
-  grid-template-columns: [start] 1fr [content-start] 5fr [content-end] 1fr [end];
+  /* grid templating is easier than flex for me */
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
   grid-template-rows: 20% auto 10%;
   grid-template-areas: "h h h" ". m ." "f f f";
   background: black;
@@ -84,8 +88,19 @@ footer {
   grid-area: f;
 }
 
+/*-------------
+ *  Overflow Rules */
+body, header, footer {
+  overflow: hidden;
+}
+
+main {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 /*-----------------------------
- *      Header               */
+ *      Header  */
 header {
   transition: 300ms;
   height: auto;
@@ -103,26 +118,58 @@ header > div {
 }
 
 /*-----------------------------
- *      Main                 */
+ *      Main  */
 main {
   transition: 300ms;
   font-family: "Arial Nova";
-  overflow-y: auto;
+  line-height: 1.5rem;
   padding: 1em;
   border-radius: 1rem 1rem 0 0;
+  /* Getting the paragraph to move to the right of the content was hard, I'm sure there is an easier way though */
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  gap: 1rem;
 }
 main h1, main h2, main h3 {
   font-family: "Arial Nova Bold";
 }
+main > p {
+  flex: 0 2 100%;
+  margin: 0;
+}
+main > aside {
+  min-width: 348px;
+  order: 1;
+  flex: 1 1 348px;
+  padding: 0.5rem;
+  border: 1px lightgray solid;
+  border-radius: 1.5rem;
+  box-shadow: 100px 100px 80px rgba(0, 0, 0, 0.07);
+}
+main > aside + p {
+  flex: 1 2 40%;
+}
 
 /*-----------------------------
- *      Footer               */
+ *      Footer  */
 footer {
+  font-family: "Arial Nova";
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
   transition: 300ms;
+}
+footer > p {
+  margin: 0;
+  font-size: 0.8rem;
 }
 
 /*=============================
- *  LAYOUT 2 - iPads
+ *  LAYOUT 2 - iPad query
  *  ===========================
  *  I am very proud of the animation and inverting, I should have probably made it so the text color just changes, but this seemed easier :) */
 @media screen and (max-width: 1024px) {
@@ -162,7 +209,7 @@ footer {
   }
 }
 /*=============================
- *  LAYOUT 3 - Phones
+ *  LAYOUT 3 - Phone query
  *  =========================== */
 @media screen and (max-width: 430px) {
   body {
