@@ -130,6 +130,7 @@ main {
   flex-flow: row wrap;
   align-content: flex-start;
   gap: 1rem;
+  /* I was going to add the lyrics on the side of the site, but I already was too deep in to change it in time! :( */
 }
 main h1, main h2, main h3 {
   font-family: "Arial Nova Bold";
